@@ -7,12 +7,13 @@ import org.apache.log4j.{Level, Logger}
 object App extends App {
 
   Logger.getLogger("org").setLevel(Level.OFF)
-
+  // Verify Parameters number
+  val filename = args(0)
   val spark = new SparkUtil
   //Read Data from all the Parquet Files
-  //val impDF = spark.sparkSession.read.parquet("C:\\events\\impressions\\*\\*")
+  val rawImpDF = spark.sparkSession.read.parquet(filename)
   //Read Data from  a Parquet File to Test
-  val rawImpDF = spark.sparkSession.read.parquet("C:\\events\\impressions\\hour=12\\*")
+  //val rawImpDF = spark.sparkSession.read.parquet(filename)
   // Get Data Schema
   //rawImpDF.printSchema()
   // Select needed Data to prepare it for the GroupBy
